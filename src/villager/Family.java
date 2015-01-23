@@ -9,26 +9,35 @@ package villager;
  *
  * @author kyle
  */
+import java.util.ArrayList;
+
 public class Family {
-   Person nullKid = new Person(true, 1, null, null, null );
    private int numOfFamily;
    private Person dad;
    private Person mom;
-   private Person [] kidsArray = new Person[10];
+   private ArrayList<Person> kidsArray;
+   
    
    public Family()
    {
        dad = null;
        mom = null;
-
+       kidsArray = new ArrayList<>( );
    }
     
-   public Family(Person startDad, Person startMom, Person[] startKidsArray)
+   public Family(Person startDad, Person startMom, ArrayList<Person> startKidsArray)
    {
        dad = startDad;
        mom = startMom;
        kidsArray = startKidsArray;
 
+   }
+   
+   public void addKid( boolean startGender, int startAge, String startFirst, String startLast, String newDMK )
+   {
+       Person newKid = new Person( startGender, startAge, startFirst, startLast, newDMK );
+       
+       kidsArray.add( newKid );
    }
    
    public Person getDad()
@@ -41,21 +50,17 @@ public class Family {
    }   
   public String listKids()
   {
-      for (int i = 0; i < 10; i++) {
-          
+      String s = "";
+      
+      for (int i = 0; i < kidsArray.size( ); i++) {
+          s += kidsArray.get( i );
       }
+      
+      return s;
   }
    
    public String toString()
    {
-       if(kid1.equals(nullKid))
-              return (dad + "\n" + mom + "\n" +  );
-
-           
-       
-       return (dad + "\n" + mom + "\n" + kid1 + "\n" + kid2 + "\n" + kid3 + "\n" +kid4 );
-   }
-   
-   
-   
+       return (dad + "\n" + mom + "\n" + listKids( ) );
+   }  
 }

@@ -7,6 +7,7 @@ package villager;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 import static villager.names.firstNameList;
 import static villager.names.lastNameList;
 
@@ -30,7 +31,7 @@ public class Villager {
         
         System.out.println("Hello. Its time to make a village.");
         System.out.println("First, how many people do you want in your village?\n");
-//Make this print safe or whatever its called. it will crash when you do invalid input.
+        //Make this print safe or whatever its called. it will crash when you do invalid input.
         villagers = scan.nextInt();
         
         System.out.println("How many kids to you want in the family?\n ");
@@ -38,13 +39,14 @@ public class Villager {
         
         families = villagers / (kids +2);
         System.out.println("you have " + families + " families");
-       // Family familyArray[] = new Family[families];
+        // Family familyArray[] = new Family[families];
+        
         Person dad = new Person(true, 10, firstNameList(), lastNameList(), "dad" );
         Person mom = new Person(true, 2, firstNameList(), lastNameList(), "dad" );
         Person kid = new Person(true, 3, firstNameList(), lastNameList(), "dad" );
         Person otherkid = new Person(true, 1, firstNameList(), lastNameList(), "dad" );
-        Family [] famArray = new Family[families];
-        Family james = new Family(dad, mom, famArray);
+        ArrayList<Family> famArray = new ArrayList<>( );
+        Family james = new Family( dad, mom, famArray );
         Person nullKid = new Person(true, 1, null, null, null );
 
         for(int i = 0; i < families; i++)
