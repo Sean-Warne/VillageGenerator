@@ -39,52 +39,61 @@ public class Villager {
         
         families = villagers / (kids +2);
         System.out.println("you have " + families + " families");
-        // Family familyArray[] = new Family[families];
+        ArrayList<Person> famArray = new ArrayList<>();
         
-        Person dad = new Person(true, 10, firstNameList(), lastNameList(), "dad" );
-        Person mom = new Person(true, 2, firstNameList(), lastNameList(), "dad" );
-        Person kid = new Person(true, 3, firstNameList(), lastNameList(), "dad" );
-        Person otherkid = new Person(true, 1, firstNameList(), lastNameList(), "dad" );
-        ArrayList<Family> famArray = new ArrayList<>( );
-        Family james = new Family( dad, mom, famArray );
-        Person nullKid = new Person(true, 1, null, null, null );
-
+        
         for(int i = 0; i < families; i++)
         {
-            dad(i);
-            mom(i);
-            Family jimmy = new Family(dad(i), mom(i), famArray);
-            famArray[i] = jimmy;
+            String lastName = lastNameList();
+            famArray.add(dad(i, lastName));
+            famArray.add(mom(i, lastName));
+            for (int j = 0; j < kids; j++) {
+                famArray.add(kid(i, lastName)); 
+
+            }
+            // Family jimmy = new Family(dad(i), mom(i), famArray);
             
             
         }   
-        for (int i = 0; i < families; i++) {
-            System.out.println("in this family you have");
-            System.out.println(famArray[i]);
+        System.out.println("in this family you have");
+        
+            
+        
+        for (Person famArray1 : famArray) {
+            System.out.println(famArray1);
         }
     }
 
-    private static Person dad(int i) {
+    public static Person dad(int i,  String lastName) {
 
         Random random = new Random();
-        int randomCoin = random.nextInt(2);
         int randomAge = random.nextInt(80 -20 +1) +20;
-        Person dad = new Person(true, randomAge, firstNameList(), lastNameList(), "dad" ); 
+        Person dad = new Person(true, randomAge, firstNameList(), lastName, "dad" ); 
         return dad;
         
     }
-    
-    
-    
-    private static Person mom(int i) {
+
+    public static Person mom(int i, String lastName) {
         int momsAge;
         Random random = new Random();
         int randomAge = random.nextInt(80 -20 +1) +20;
-        Person mom = new Person(false, randomAge, firstNameList(), lastNameList(), "mom"); 
+        Person mom = new Person(false, randomAge, firstNameList(), lastName, "mom"); 
         return mom;
+    }
            
-           
+    public static Person kid(int i,String lastName) 
+     {
+        Boolean male= true;
+         Random random = new Random();
+        int randomCoin = random.nextInt(2);
+        int randomAge = random.nextInt(20);
+        if(randomCoin == 1)
+            male = false;
+        Person kid = new Person(male, randomAge, firstNameList(), lastName, "kid");
+        return kid;
+     }
+        
+        
            
         }
 
-}

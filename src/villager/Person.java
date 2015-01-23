@@ -83,7 +83,7 @@ public class Person {
         
     public String toString()
     {
-        return ("Person" + "  " + male + "  " + firstName  + "  " + lastName + "  " + dadMomKid + "  " + age  );
+        return (dadMomKid +" " + male + "  " + firstName  + "  " + lastName + " age: " + age  );
     }
         
 
